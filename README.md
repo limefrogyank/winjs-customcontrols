@@ -21,4 +21,4 @@ To use:
                     winControl.oninputChanged: timeChangedCommandBind"></div>
 ```
                     
-The data-win-options value lets you set whether to get a datepicker or timepicker.  Datepicker is the default.
+The data-win-options' type value lets you set whether to get a datepicker or timepicker.  Datepicker is the default.
