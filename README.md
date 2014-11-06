@@ -9,6 +9,7 @@ This is intended to be used on the latest Android and iOS only.  Android and iOS
 
 To use:
 
+[code]
 <div data-win-options="{type: 'date'}"
      data-win-control="WinJS.UI.InputDateTime"
      data-win-bind="winControl.currentInput: dataContext.date;
@@ -18,5 +19,6 @@ To use:
      data-win-control="WinJS.UI.InputDateTime"
      data-win-bind="winControl.currentInput: dataContext.time;
                     winControl.oninputChanged: timeChangedCommandBind"></div>
+[/code]
                     
 The data-win-options value lets you set whether to get a datepicker or timepicker.  Datepicker is the default.
