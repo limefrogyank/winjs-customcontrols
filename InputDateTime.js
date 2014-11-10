@@ -64,9 +64,12 @@
 
                 });
 
-                //android doesn't respond to focus() 
+                // android doesn't respond to focus() 
+                // iOS doesn't respond to click()
+                // so use BOTH
                 //invoke the native picker by clicking the date or time input
                 di.click();
+                di.focus();
             });
 
             //ti.addEventListener("click", function (ev) {
