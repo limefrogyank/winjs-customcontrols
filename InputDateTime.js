@@ -13,6 +13,7 @@
             var ti = document.createElement('input');
             this._ti = ti;
             ti.setAttribute("type", "text");
+            ti.setAttribute("readonly");
 
             //if the initialValue is set for some reason already (databinding?), put it into the input's value property... is this necessary?
             if (this._initialValue != null) {
@@ -41,14 +42,16 @@
                 di.setAttribute("type", "date");
             }
             //this input should be hidden and have very little footprint
-            di.setAttribute("style", "width: 0px; height:0px; visibility:hidden");
+            di.setAttribute("style", "width: 1px; height:1px; position:absolute;opacity: 0;");
+            ti.setAttribute("style", "position:absolute; z-index:10;margin-bottom: 5px;");
 
             //listen for a click event on the text input
-            ti.addEventListener("click", function (ev) {
+            ti.addEventListener("focus", function (ev) {
+                // the read-only attribute should stop the iOS keyboard from showing, works for android also
                 //kill event so keyboard doesn't show, defocus (blur) input
-                ev.preventDefault();
-                ev.stopPropagation();
-                ti.blur();
+                //ev.preventDefault();
+                //ev.stopPropagation();
+                //ti.blur();
 
                 //listen for the change event that signals when the native pickers are completed successfully
                 di.addEventListener("change", function () {
@@ -61,13 +64,36 @@
 
                 });
 
+                //android doesn't respond to focus() 
                 //invoke the native picker by clicking the date or time input
                 di.click();
             });
 
+            //ti.addEventListener("click", function (ev) {
+            //    //kill event so keyboard doesn't show, defocus (blur) input
+            //    ev.preventDefault();
+            //    ev.stopPropagation();
+            //    ti.blur();
+
+            //    //listen for the change event that signals when the native pickers are completed successfully
+            //    di.addEventListener("change", function () {
+            //        //set the text input value to equal the date/time input value... we can only see the text input value
+            //        ti.value = di.value;
+            //        //fire an event that indicates the date/time has changed.  You can win-data-bind to this using "oninputChanged".  The event value uses just the detail parameter to hold a text date/time.
+            //        element.winControl.dispatchEvent("inputChanged", {
+            //            detail: ti.value
+            //        });
+
+            //    });
+
+            //    //invoke the native picker by clicking the date or time input
+            //    di.click();
+            //});
+
             //add the two inputs to the div
-            element.appendChild(ti);
+            
             element.appendChild(di);
+            element.appendChild(ti);
         },
             {
 
