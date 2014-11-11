@@ -41,9 +41,9 @@
             } else {
                 di.setAttribute("type", "date");
             }
-            //this input should be hidden and have very little footprint
-            di.setAttribute("style", "width: 1px; height:1px; position:absolute;opacity: 0;");
-            ti.setAttribute("style", "position:absolute; z-index:10;margin-bottom: 5px;");
+            //the datetime input should be hidden and have very little footprint
+            di.setAttribute("style", "width: 1px; height:1px; position:absolute; opacity: 0;");
+            ti.setAttribute("style", "z-index:10");
 
             //listen for a click event on the text input
             ti.addEventListener("focus", function (ev) {
