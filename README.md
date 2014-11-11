@@ -29,7 +29,7 @@ Same as InputDateTime.js except it works for Windows/WP8/Android/iOS.  In Androi
 
 ```
 <div data-win-options="{type: 'date'}"
-     data-win-control="WinJS.UI.Custom.DateTimePickerDateTimePicker"
+     data-win-control="WinJS.UI.Custom.DateTimePicker"
      data-win-bind="winControl.currentInput: dataContext.date;
                     winControl.oninputChanged: dateChangedCommandBind"></div>
                                   
