@@ -1,5 +1,5 @@
 (function (WinJS) {
-    WinJS.Namespace.define("WinJS.UI", {
+    WinJS.Namespace.define("WinJS.UI.Custom", {
         InputDateTime: WinJS.Class.define(function (element, options) {
             if (!element || element.tagName.toLowerCase() !== "div")
                 throw "div type must be provided";
@@ -149,7 +149,7 @@
     });
 
     //this is required to be able to fire events that can be seen from the control itself
-    WinJS.Class.mix(WinJS.UI.InputDateTime,
+    WinJS.Class.mix(WinJS.UI.Custom.InputDateTime,
        WinJS.Utilities.createEventProperties("inputChanged"),
        WinJS.UI.DOMEventMixin);
 
