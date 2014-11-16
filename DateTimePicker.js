@@ -35,8 +35,8 @@
                     var ti = document.createElement('input');
                     this._ti = ti;
                     ti.setAttribute("type", "text");
-                    ti.setAttribute("readonly");
-
+                    ti.setAttribute("readonly","true");
+                    
                     //if the initialValue is set for some reason already (databinding?), put it into the input's value property... is this necessary?
                     if (this._initialValue != null) {
                         ti.value = this._initialValue;
@@ -50,11 +50,16 @@
                     switch (options.type) {
                         case "date":
                             di.setAttribute("type", "date");
+                            if (di.type != "date")
+                                console.log('input date not supported');
                             break;
                         case "time":
                             di.setAttribute("type", "time");
+                            if (di.type != "time")
+                                console.log('input time not supported');
                             break;
                     }
+
                     //the datetime input should be hidden and have very little footprint
                     di.setAttribute("style", "width: 1px; height:1px; position:absolute; opacity: 0;");
                     ti.setAttribute("style", "z-index:10");
@@ -180,6 +185,9 @@
                         if (this._control != null) {
                             this._control.current = value;
                             
+                        }
+                        if (this._di != null) {
+                            this._di.valueAsDate = value;// = value.getFullYear() + "-" + value.getMonth() + "-" + value.getDate();
                         }
                     }
 
