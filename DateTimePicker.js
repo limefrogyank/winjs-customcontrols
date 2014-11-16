@@ -6,6 +6,8 @@
             if (!element || element.tagName.toLowerCase() !== "div")
                 throw "div type must be provided";
             options = options || {};
+            this._options = options;
+
             this._setElement(element);
 
             if (options.type){
@@ -64,10 +66,14 @@
                     di.setAttribute("style", "width: 1px; height:1px; position:absolute; opacity: 0;");
                     ti.setAttribute("style", "z-index:10");
 
+
+
                     //listen for a click event on the text input
                     ti.addEventListener("focus", function (ev) {
-                        //listen for the change event that signals when the native pickers are completed successfully
-                        di.addEventListener("change", function () {
+
+                        function changed(event) {
+                            di.removeEventListener("change", changed);
+
                             //set the text input value to equal the date/time input value... we can only see the text input value
                             var dateTime = new Date();
                             if (options.type == "time") {
@@ -78,16 +84,19 @@
                             } else if (options.type == "date") {
                                 //Android also records datepicker date as UTC (00:00UTC attached to date), so when converted to local datetime, on the East US coast reads as the day before.
                                 dateTime = new Date(di.value);
-                                dateTime.setHours(dateTime.getHours() + ((new Date()).getTimezoneOffset())/60);
+                                dateTime.setHours(dateTime.getHours() + ((new Date()).getTimezoneOffset()) / 60);
                             }
-                            
+
                             ti.value = dateTime.format(options.format);
                             //fire an event that indicates the date/time has changed.  You can win-data-bind to this using "oninputChanged".  The event value uses just the detail parameter to hold a text date/time.
                             element.winControl.dispatchEvent("inputChanged", {
                                 detail: ti.value
                             });
 
-                        });
+                        }
+
+                        //listen for the change event that signals when the native pickers are completed successfully
+                        di.addEventListener("change", changed);
 
                         // android doesn't respond to focus() 
                         // iOS doesn't respond to click()
@@ -140,6 +149,7 @@
 
                 //Private members
                 _element: null,
+                _options: null,
                 _ti: null,
                 _di: null,
                 _control: null,
@@ -150,6 +160,7 @@
                     this._element = element;
                 },
 
+                
                 //Public members
                 element: {
                     get: function () {
@@ -191,6 +202,11 @@
                         }
                     }
 
+                },
+                current: {
+                    get: function () {
+                        return this._di.valueAsDate;
+                    }
                 }
             })
     });
