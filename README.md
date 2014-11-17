@@ -3,6 +3,17 @@ winjs-customcontrols
 
 Useful custom controls to use with the open-source WinJS library.
 
+NumberStepper.jp
+----------------
+This is an <input type="number"> with attached touch-sized buttons to let you step the count up or down.  All values are optional.  The defaults are: value=0, min=0, max=undefined, step=1.
+
+To use:
+```
+<div data-win-options="{value: 0, min: 0, max: 10, step: 1}"
+     data-win-control="WinJS.UI.Custom.NumberStepper"></div>
+```
+
+
 InputDateTime.js
 ----------------
 This is intended to be used on the latest Android and iOS only.  Android and iOS will now show their native Date and Time pickers when using `<input type="date">` or `<input type="time">`.  WinJS does not currently style these particular input elements.  InputDateTime.js uses a visible `<input type="text">` as a placeholder for the hidden date input.  The styling now fits the rest of WinJS since it uses the styling of a text input.
