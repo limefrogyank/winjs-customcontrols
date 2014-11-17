@@ -5,7 +5,7 @@ Useful custom controls to use with the open-source WinJS library.
 
 NumberStepper.js
 ----------------
-This is an <input type="number"> with attached touch-sized buttons to let you step the count up or down.  All values are optional.  The defaults are: value=0, min=0, max=undefined, step=1.
+This is an `<input type="number">` with attached touch-sized buttons to let you step the count up or down.  All values are optional.  The defaults are: value=0, min=0, max=undefined, step=1.
 
 To use:
 ```
