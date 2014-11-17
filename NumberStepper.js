@@ -56,29 +56,35 @@
 
             //listen for a click events
             plusButton.addEventListener("click", function (ev) {
-                ni.valueAsNumber = ni.valueAsNumber + 1;
-                if (ni.valueAsNumber == options.max)
-                    plusButton.disabled = true;
-                else
-                    plusButton.disabled = false;
-                if (ni.valueAsNumber == options.min)
-                    minusButton.disabled = true;
-                else
-                    minusButton.disabled = false;
+                ni.valueAsNumber = ni.valueAsNumber + options.step;
+                if (ni.valueAsNumber > options.max)
+                    ni.valueAsNumber = options.max;
+                element.winControl._updateButtons();
+                //if (ni.valueAsNumber == options.max)
+                //    plusButton.disabled = true;
+                //else
+                //    plusButton.disabled = false;
+                //if (ni.valueAsNumber == options.min)
+                //    minusButton.disabled = true;
+                //else
+                //    minusButton.disabled = false;
                 element.winControl.dispatchEvent("inputChanged", {
                     detail: ni.valueAsNumber
                 });
             });
             minusButton.addEventListener("click", function (ev) {
-                ni.valueAsNumber = ni.valueAsNumber - 1;
-                if (ni.valueAsNumber == options.max)
-                    plusButton.disabled = true;
-                else
-                    plusButton.disabled = false;
-                if (ni.valueAsNumber == options.min)
-                    minusButton.disabled = true;
-                else
-                    minusButton.disabled = false;
+                ni.valueAsNumber = ni.valueAsNumber - options.step;
+                if (ni.valueAsNumber < options.min)
+                    ni.valueAsNumber = options.min;
+                element.winControl._updateButtons();
+                //if (ni.valueAsNumber == options.max)
+                //    plusButton.disabled = true;
+                //else
+                //    plusButton.disabled = false;
+                //if (ni.valueAsNumber == options.min)
+                //    minusButton.disabled = true;
+                //else
+                //    minusButton.disabled = false;
                 element.winControl.dispatchEvent("inputChanged", {
                     detail: ni.valueAsNumber
                 });
@@ -120,6 +126,16 @@
                 _setMinusButton: function(minusButton) {
                     this._minusButton = minusButton;
                 },
+                _updateButtons: function() {
+                    if (this._ni.valueAsNumber == this._options.max)
+                        this._plusButton.disabled = true;
+                    else
+                        this._plusButton.disabled = false;
+                    if (this._ni.valueAsNumber == this._options.min)
+                        this._minusButton.disabled = true;
+                    else
+                        this._minusButton.disabled = false;
+                },
 
                 //Public members
                 element: {
@@ -134,10 +150,11 @@
                 },
                 currentInput: {
                     get: function () {
-                        return this._ni.value;
+                        return this._ni.valueAsNumber;
                     },
                     set: function (value) {
-                        this._ni.value = value;
+                        this._ni.valueAsNumber = value;
+                        this._updateButtons();
                     }
 
                 },
