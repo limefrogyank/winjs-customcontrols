@@ -38,6 +38,7 @@ The data-win-options' type value lets you set whether to get a datepicker or tim
 
 DateTimePicker.js
 ----------------
+![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/DateTimePicker-Time.png)
 Same as InputDateTime.js except it works for Windows/WP8/Android/iOS.  In Android or iOS, the native pickers are shown.  In Windows 8 and Windows Phone, the WinJS picker controls are shown.  This control is intended to be used in a Cordova app (Multi-Device Hybrid App template) and requires the Cordova Device plugin for device detection.  A workaround could be accomplished using the browser agent string.  The use is exactly the same as InputDateTime.js.
 
 ```
