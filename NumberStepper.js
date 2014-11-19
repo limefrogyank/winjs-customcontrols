@@ -1,3 +1,6 @@
+// the valueAsNumber property is inconsistent across all browsers, so this uses value (a string property) only
+// and converts on the fly to a number.  This does not use any stepper methods internal to the input, either.  
+
 (function (WinJS) {
     WinJS.Namespace.define("WinJS.UI.Custom", {
         NumberStepper: WinJS.Class.define(function (element, options) {
