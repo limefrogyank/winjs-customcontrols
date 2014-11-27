@@ -1,5 +1,5 @@
 // This is a dialog with two buttons similar to the ContentDialog in the latest version of WinJS.  This is intended
-// for build v3.0.1 available on NuGet (as of 2014-Nov-11).  Also, this uses a popup so has a light dismiss behavior.
+// for build v3.0.1 available on NuGet (as of 2014-Nov-11).  Also, this uses a flyout so has a light dismiss behavior.
 
 (function (WinJS) {
     WinJS.Namespace.define("WinJS.UI.Custom", {
