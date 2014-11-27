@@ -12,8 +12,9 @@ This is an alternative to using ContentDialog (it does not exist in v3.0.1).  Cr
 To use, place this somewhere in your html:
 ```
 <div data-win-control="WinJS.UI.Custom.InputPopup"
-                 data-win-options="{content: 'Instructions go here', primaryButton: 'primary text', secondaryButton: 'secondary text', type: 'text' }"
-                 id="inputPopup"></div>
+     data-win-options="{content: 'Instructions go here', primaryButton: 'primary text', 
+                        secondaryButton: 'secondary text', type: 'text' }"
+     id="inputPopup"></div>
 ```
 Set the type using the options.  Default is 'text'.  Use 'password' for a password style input box.
 
