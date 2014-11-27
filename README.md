@@ -20,6 +20,8 @@ Use the dismissed event to unhook the buttonInvoked and inputChanged handlers.  
 (1) detail - 'primary' for the primary button invoked, 'secondary' for the secondary button invoked 
 & (2) value - if 'primary', this contains the input box's value
 
+Call `popup.winControl.show()` to display it.
+
 NumberStepper.js
 ----------------
 ![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/NumberStepper.png)
