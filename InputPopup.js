@@ -59,6 +59,7 @@
                 secondaryButton.style.cssFloat = 'right';
                 secondaryButton.style.marginLeft = '10px';
                 secondaryButton.addEventListener("click", function (ev) {
+                    input.value = '';
                     element.winControl.dispatchEvent("buttonInvoked", { detail: "secondary" });
                     flyout.hide();
                 });
@@ -76,8 +77,10 @@
                     primaryButton.style.marginLeft = '10px';
                 }
                 primaryButton.addEventListener("click", function (ev) {
-                    element.winControl.dispatchEvent("buttonInvoked", { detail: "primary" });
+                    var copy = input.value;
+                    element.winControl.dispatchEvent("buttonInvoked", { detail: "primary", value: copy });
                     flyout.hide();
+                    input.value = '';
                 });
                 element.winControl._primaryButton = primaryButton;
                 buttonDiv.appendChild(primaryButton);
@@ -114,7 +117,6 @@
                 show: function (elem) {
                     var flyout = this._flyout;
                     var input = this._input;
-                    input.value = '';
                     var onAfterShow = function () {
                         flyout.removeEventListener("aftershow", onAfterShow);
                         input.focus();
@@ -147,6 +149,9 @@
                 value: {
                     get: function () {
                         return this._input.value;
+                    },
+                    set: function (value) {
+                        this._input.value = value;
                     }
                 }
 
