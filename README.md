@@ -15,10 +15,11 @@ To use, place this somewhere in your html:
                  data-win-options="{content: 'Instructions go here', primaryButton: 'primary text', secondaryButton: 'secondary text' }"
                  id="inputPopup"></div>
 ```
-You can attach event handlers to three exposed events:  dismissed, buttonInvoked, and inputChanged
+You can attach event handlers to three exposed events:  `dismissed`, `buttonInvoked`, and `inputChanged`
+
 Use the dismissed event to unhook the buttonInvoked and inputChanged handlers.  The buttonInvoked event sends two parameters:
-(1) detail - 'primary' for the primary button invoked, 'secondary' for the secondary button invoked 
-& (2) value - if 'primary', this contains the input box's value
+(1) `detail` - 'primary' for the primary button invoked, 'secondary' for the secondary button invoked 
+& (2) `value` - if 'primary', this contains the input box's value
 
 Call `inputPopup.winControl.show()` to display it.
 
