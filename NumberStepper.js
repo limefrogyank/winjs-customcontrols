@@ -1,3 +1,6 @@
+// the valueAsNumber property is inconsistent across all browsers, so this uses value (a string property) only
+// and converts on the fly to a number.  This does not use any stepper methods internal to the input, either.  
+
 (function (WinJS) {
     WinJS.Namespace.define("WinJS.UI.Custom", {
         NumberStepper: WinJS.Class.define(function (element, options) {
@@ -9,41 +12,43 @@
             this._setElement(element);
 
             if (!options.value)
-//                this._currentInput = options.value;
-//            else
                 options.value = 0;
 
             if (!options.step)
-//                this._step = options.step;
-//            else
                 options.step = 1;
             
             if (!options.min)
-//                options.min = options.min;
-//            else
                 options.min = 0;
             
-//            if (options.max)
-//                options.max = options.max;
-            
-
             element.winControl = this;
             WinJS.UI.setOptions(this, options);
+
             element.setAttribute("style", "display:flex;align-items: center;");
             
             //create the input
+            
             var ni = document.createElement('input');
             this._setNI(ni);
             ni.setAttribute("type", "number");
-            ni.setAttribute("style", "vertical-align:middle; flex:1;");
-            ni.valueAsNumber = options.value;
             
+            ni.setAttribute("style", "vertical-align:middle; flex:1;");
+            ni.value = options.value;
+            
+            //listen for blur (lost focus) so we can signal number change to control and alter buttons if necessary
+            ni.addEventListener("blur", function (ev) {
+                element.winControl._updateButtons();
+
+                element.winControl.dispatchEvent("valueChanged", {
+                    detail: +ni.value
+                });
+            });
+
             //create the minus Button
             var minusButton = document.createElement('button');
             this._setMinusButton(minusButton);
             minusButton.setAttribute("style", "min-width:35px; vertical-align:middle; margin-left: 5px;");
             minusButton.innerText = "-";
-            if (ni.valueAsNumber == options.min)
+            if (+ni.value == options.min)
                 minusButton.disabled = true;
 
             //create the plus button
@@ -51,42 +56,28 @@
             this._setPlusButton(plusButton);
             plusButton.setAttribute("style", "min-width:35px; vertical-align:middle; margin-left: 5px;");
             plusButton.innerText = "+";
-            if (ni.valueAsNumber == options.max)
+            if (+ni.value == options.max)
                 plusButton.disabled = true;
 
             //listen for a click events
             plusButton.addEventListener("click", function (ev) {
-                ni.valueAsNumber = ni.valueAsNumber + options.step;
-                if (ni.valueAsNumber > options.max)
-                    ni.valueAsNumber = options.max;
+                ni.value = +ni.value + options.step;
+                if (+(ni.value) > options.max)
+                    ni.value = options.max;
                 element.winControl._updateButtons();
-                //if (ni.valueAsNumber == options.max)
-                //    plusButton.disabled = true;
-                //else
-                //    plusButton.disabled = false;
-                //if (ni.valueAsNumber == options.min)
-                //    minusButton.disabled = true;
-                //else
-                //    minusButton.disabled = false;
-                element.winControl.dispatchEvent("inputChanged", {
-                    detail: ni.valueAsNumber
+
+                element.winControl.dispatchEvent("valueChanged", {
+                    detail: +ni.value
                 });
             });
             minusButton.addEventListener("click", function (ev) {
-                ni.valueAsNumber = ni.valueAsNumber - options.step;
-                if (ni.valueAsNumber < options.min)
-                    ni.valueAsNumber = options.min;
+                ni.value = +ni.value - options.step;
+                if (+ni.value < options.min)
+                    ni.value = options.min;
                 element.winControl._updateButtons();
-                //if (ni.valueAsNumber == options.max)
-                //    plusButton.disabled = true;
-                //else
-                //    plusButton.disabled = false;
-                //if (ni.valueAsNumber == options.min)
-                //    minusButton.disabled = true;
-                //else
-                //    minusButton.disabled = false;
-                element.winControl.dispatchEvent("inputChanged", {
-                    detail: ni.valueAsNumber
+
+                element.winControl.dispatchEvent("valueChanged", {
+                    detail: +ni.value
                 });
             });
 
@@ -96,7 +87,6 @@
             element.appendChild(minusButton);
             element.appendChild(plusButton);
 
-
         },
             {
 
@@ -104,11 +94,6 @@
                 _element: null,
                 _options: null,
                 _control: null,
-
-                //_min: 0,
-                //_max: null,
-                //_step: 1,
-                //_value: 0,
 
                 _ni:null,
                 _minusButton:null,
@@ -148,13 +133,18 @@
                         return this._ni;
                     }
                 },
-                currentInput: {
+                value: {
                     get: function () {
-                        return this._ni.valueAsNumber;
+                        if (this._ni != null)
+                            return this._ni.value;
+                        else
+                            return this._element.value;
                     },
                     set: function (value) {
-                        this._ni.valueAsNumber = value;
-                        this._updateButtons();
+                        if (this._ni != null) {
+                            this._ni.value = value;
+                            this._updateButtons();
+                        }
                     }
 
                 },
@@ -168,7 +158,7 @@
 
     //this is required to be able to fire events that can be seen from the control itself
     WinJS.Class.mix(WinJS.UI.Custom.NumberStepper,
-       WinJS.Utilities.createEventProperties("inputChanged"),
+       WinJS.Utilities.createEventProperties("valueChanged"),
        WinJS.UI.DOMEventMixin);
 
 }(WinJS));
