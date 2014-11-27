@@ -12,13 +12,13 @@
             this._setElement(element);
 
             if (!options.content)
-                options.content = "hello";
+                options.content = "";
 
-            if (!options.primaryButton)
-                options.primaryButton = "a";
+//            if (!options.primaryButton)
+//                options.primaryButton = "a";
 
-            if (!options.secondaryButton)
-                options.secondaryButton = "b";
+//            if (!options.secondaryButton)
+//                options.secondaryButton = "b";
             
             element.winControl = this;
             WinJS.UI.setOptions(this, options);
