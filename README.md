@@ -3,6 +3,23 @@ winjs-customcontrols
 
 Useful custom controls to use with the open-source WinJS library.
 
+InputPopup.js
+-------------
+![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/InputPopup.png)
+
+This is an alternative to using ContentDialog (it does not exist in v3.0.1).  Creates a popup dialog with input and light-dismiss behavior.
+
+To use, place this somewhere in your html:
+```
+<div data-win-control="WinJS.UI.Custom.InputPopup"
+                 data-win-options="{content: 'Instructions go here', primaryButton: 'primary text', secondaryButton: 'secondary text' }"
+                 id="inputPopup"></div>
+```
+You can attach event handlers to three exposed events:  dismissed, buttonInvoked, and inputChanged
+Use the dismissed event to unhook the buttonInvoked and inputChanged handlers.  The buttonInvoked event sends two parameters:
+detail - 'primary' for the primary button invoked, 'secondary' for the secondary button invoked
+value - if 'primary', this contains the input box's value
+
 NumberStepper.js
 ----------------
 ![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/NumberStepper.png)
