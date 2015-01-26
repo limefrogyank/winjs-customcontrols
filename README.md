@@ -1,7 +1,7 @@
 winjs-customcontrols
 ====================
 
-Useful custom controls to use with the open-source WinJS library.
+Useful custom controls to use with the open-source WinJS library.  From Jan 2014, I will be writing everything using Typescript since it is so much easier to use. :)
 
 CustomFlyout.ts
 ---------------
