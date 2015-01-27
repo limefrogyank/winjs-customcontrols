@@ -20,6 +20,7 @@ Here's an example of how to use it:
  <!-- Put your controls for the panel here. -->
 </div>
 ```
+Note: If you are using a UI click behavior to open and close this flyout (i.e. a button) AND you have isLightDismiss set to true, you'll need to stopPropagation of the event on your button for closing the flyout.  This control currently sets a document-level event handler for clicks and, for now, setting the internal isOpen property to false *twice* causes some problems.
 
 InputPopup.js
 -------------
