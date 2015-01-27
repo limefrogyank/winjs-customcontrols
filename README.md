@@ -5,6 +5,8 @@ Useful custom controls to use with the open-source WinJS library.  From January 
 
 CustomFlyout.ts
 ---------------
+![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/CustomFlyout.png)
+
 This is modeled on the SettingsFlyout control that comes with WinJS2.0.  However, in the original WinJS control, the LightDismiss feature is permanently on and you have to open and close the panel using methods on the control.  I wrote this CustomFlyout in order to control the opening and closing by switching a single property 'isOpen'.  This means you can now open and close the flyout using binding.  In addition, you can turn off LightDismiss and keep the panel open.  The panel will resize itself when the screen width changes to a width that is close to or smaller than the panel's width.  An opened and closed event are provided so that you can adjust your viewmodel when the panel opens or closes by other means.
 
 Here's an example of how to use it:
