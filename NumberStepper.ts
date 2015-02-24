@@ -1,4 +1,4 @@
-﻿module WinJS.UI.Custom {
+module WinJS.UI.Custom {
 
     export class NumberStepper {
 
@@ -122,11 +122,11 @@
         }
 
         private _updateButtons() {
-            if (this._ni.valueAsNumber == this._options.max)
+            if (+this._ni.value == this._options.max)
                 this._plusButton.disabled = true;
             else
                 this._plusButton.disabled = false;
-            if (this._ni.valueAsNumber == this._options.min)
+            if (+this._ni.value == this._options.min)
                 this._minusButton.disabled = true;
             else
                 this._minusButton.disabled = false;
