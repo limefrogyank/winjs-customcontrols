@@ -49,11 +49,11 @@ NumberStepper.ts
 ----------------
 ![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/NumberStepper.png)
 
-This is an `<input type="number">` with attached touch-sized buttons to let you step the count up or down.  All values are optional.  The defaults are: value=0, min=0, max=undefined, step=1.
+This is an `<input type="number">` with attached touch-sized buttons to let you step the count up or down.  All values are optional.  The defaults are: value=0, min=0, max=undefined, step=1, buttonWidth=35.
 
 To use:
 ```
-<div data-win-options="{value: 0, min: 0, max: 10, step: 1}"
+<div data-win-options="{value: 0, min: 0, max: 10, step: 1, buttonWidth: 50}"
      data-win-control="WinJS.UI.Custom.NumberStepper"></div>
 ```
 This is a Typescript version of the control.  The old JS version is in the oldJS folder.
