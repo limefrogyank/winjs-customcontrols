@@ -45,7 +45,7 @@ Use the dismissed event to unhook the buttonInvoked and inputChanged handlers.  
 
 Call `inputPopup.winControl.show()` to display it.
 
-NumberStepper.js
+NumberStepper.ts
 ----------------
 ![alt-tag](https://raw.githubusercontent.com/limefrogyank/winjs-customcontrols/master/images/NumberStepper.png)
 
@@ -56,7 +56,7 @@ To use:
 <div data-win-options="{value: 0, min: 0, max: 10, step: 1}"
      data-win-control="WinJS.UI.Custom.NumberStepper"></div>
 ```
-
+This is a Typescript version of the control.  The old JS version is in the oldJS folder.
 
 
 DateTimePicker.js
